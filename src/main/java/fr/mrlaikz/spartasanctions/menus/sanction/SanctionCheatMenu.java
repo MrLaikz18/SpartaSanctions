@@ -5,6 +5,7 @@ import fr.mrlaikz.spartasanctions.SpartaSanctions;
 import fr.mrlaikz.spartasanctions.enums.SanctionType;
 import fr.mrlaikz.spartasanctions.menus.PlayerMenu;
 import fr.mrlaikz.spartasanctions.menus.SanctionMenu;
+import fr.mrlaikz.spartasanctions.objects.Context;
 import fr.mrlaikz.spartasanctions.objects.Sanction;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -84,10 +85,11 @@ public class SanctionCheatMenu extends Menu {
                 time = "14d";
             }
 
-            Sanction warn = new Sanction(player, target, SanctionType.WARN, "", reason, date);
+            Sanction warn = new Sanction(player, target, SanctionType.WARN, "", reason, date, Context.CHEAT);
 
-            Sanction s = new Sanction(player, target, type, time, reason, date);
-            s.apply();
+            Sanction s = new Sanction(player, target, type, time, reason, date, Context.CHEAT);
+            SpartaSanctions.getInstance().getSanctionManager().apply(s);
+            SpartaSanctions.getInstance().getSanctionManager().apply(warn);
 
         }
 

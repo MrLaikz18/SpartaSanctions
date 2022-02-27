@@ -2,6 +2,7 @@ package fr.mrlaikz.spartasanctions.database;
 
 import fr.mrlaikz.spartasanctions.SpartaSanctions;
 import fr.mrlaikz.spartasanctions.enums.SanctionType;
+import fr.mrlaikz.spartasanctions.objects.Context;
 import fr.mrlaikz.spartasanctions.objects.Sanction;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
@@ -44,7 +45,8 @@ public class SQLGetter {
                 String reason = rs.getString("reason");
                 Player sanctioner = Bukkit.getPlayer(rs.getString("sanctioner"));
                 String date = rs.getString("date");
-                Sanction s = new Sanction(sanctioner, sanctioned, type, time, reason, date);
+                Context c = Context.valueOf(rs.getString("context"));
+                Sanction s = new Sanction(sanctioner, sanctioned, type, time, reason, date, c);
                 sanctions.add(s);
             }
         } catch(SQLException e) {
@@ -66,7 +68,8 @@ public class SQLGetter {
                 String reason = rs.getString("reason");
                 Player sanctioner = Bukkit.getPlayer(rs.getString("sanctioner"));
                 String date = rs.getString("date");
-                Sanction s = new Sanction(sanctioner, sanctioned, type, time, reason, date);
+                Context c = Context.valueOf(rs.getString("context"));
+                Sanction s = new Sanction(sanctioner, sanctioned, type, time, reason, date, c);
                 sanctions.add(s);
             }
         } catch(SQLException e) {
@@ -88,7 +91,31 @@ public class SQLGetter {
                 String time = rs.getString("time");
                 Player sanctioner = Bukkit.getPlayer(rs.getString("sanctioner"));
                 String date = rs.getString("date");
-                Sanction s = new Sanction(sanctioner, sanctioned, type, time, reason, date);
+                Context c = Context.valueOf(rs.getString("context"));
+                Sanction s = new Sanction(sanctioner, sanctioned, type, time, reason, date, c);
+                sanctions.add(s);
+            }
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+        return sanctions;
+    }
+
+    public List<Sanction> getSanctions(Player p, Context c) {
+        List<Sanction> sanctions = new ArrayList<Sanction>();
+        try {
+            PreparedStatement ps = db.prepareStatement("SELECT * FROM " + table + " WHERE sanctioned = ?  AND context = ? ORDER BY id DESC LIMIT 18");
+            ps.setString(1, p.getUniqueId().toString());
+            ps.setString(2, c.toString());
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                Player sanctioned = p;
+                String time = rs.getString("time");
+                SanctionType type = SanctionType.valueOf(rs.getString("type"));
+                Player sanctioner = Bukkit.getPlayer(rs.getString("sanctioner"));
+                String reason = rs.getString("reason");
+                String date = rs.getString("date");
+                Sanction s = new Sanction(sanctioner, sanctioned, type, time, reason, date, c);
                 sanctions.add(s);
             }
         } catch(SQLException e) {
@@ -124,6 +151,9 @@ public class SQLGetter {
     }
     public CompletableFuture<Void> addSanctionAsync(Sanction s) {
         return future(() -> addSanction(s));
+    }
+    public CompletableFuture<List<Sanction>> getSanctionsAsync(Player p, Context c) {
+        return future(() -> getSanctions(p, c));
     }
 
     //FUTURE

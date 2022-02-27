@@ -14,6 +14,7 @@ public class SpartaSanctions extends JavaPlugin {
 
     private Database db;
     private SQLGetter sql = new SQLGetter(this);
+    private SanctionManager manager;
     public static SpartaSanctions instance;
 
     @Override
@@ -21,6 +22,7 @@ public class SpartaSanctions extends JavaPlugin {
         //CONFIG
         saveDefaultConfig();
         instance = this;
+        manager = new SanctionManager(this);
 
         //DATABASE
         this.db = new Database(this);
@@ -53,6 +55,10 @@ public class SpartaSanctions extends JavaPlugin {
 
     public static SpartaSanctions getInstance() {
         return instance;
+    }
+
+    public SanctionManager getSanctionManager() {
+        return manager;
     }
 
     public String strConfig(String path) {
