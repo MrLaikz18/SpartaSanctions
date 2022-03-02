@@ -13,7 +13,7 @@ import java.sql.SQLException;
 public class SpartaSanctions extends JavaPlugin {
 
     private Database db;
-    private SQLGetter sql = new SQLGetter(this);
+    private SQLGetter sql;
     private SanctionManager manager;
     public static SpartaSanctions instance;
 
@@ -25,11 +25,13 @@ public class SpartaSanctions extends JavaPlugin {
         manager = new SanctionManager(this);
 
         //DATABASE
-        this.db = new Database(this);
+        db = new Database(this);
         try {
             db.connect();
+            sql = new SQLGetter(this);
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
+            this.getPluginLoader().disablePlugin(this);
         }
 
         //COMMANDS
@@ -42,7 +44,9 @@ public class SpartaSanctions extends JavaPlugin {
     @Override
     public void onDisable() {
         getLogger().info("Plugin Innactif");
-        this.db.disconnect();
+        if(this.db.isConnected()) {
+            this.db.disconnect();
+        }
     }
 
     public Connection getDatabase() {

@@ -5,13 +5,12 @@ import fr.mrlaikz.spartasanctions.SpartaSanctions;
 import fr.mrlaikz.spartasanctions.enums.SanctionType;
 import fr.mrlaikz.spartasanctions.menus.PlayerMenu;
 import fr.mrlaikz.spartasanctions.menus.SanctionMenu;
-import fr.mrlaikz.spartasanctions.objects.Context;
+import fr.mrlaikz.spartasanctions.enums.Context;
 import fr.mrlaikz.spartasanctions.objects.Sanction;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -106,7 +105,7 @@ public class SanctionChatMenu extends Menu {
         ItemStack floodG = PlayerMenu.getItemStack(Material.CHEST, "§cFlood Grave", false);
         ItemStack maj = PlayerMenu.getItemStack(Material.CHEST, "§cMajuscules", false);
         ItemStack provoc = PlayerMenu.getItemStack(Material.CHEST, "§cProvocation", false);
-        ItemStack retour = PlayerMenu.getItemStack(Material.BARRIER, "§c&lRetour", false);
+        ItemStack retour = PlayerMenu.getItemStack(Material.BARRIER, "§c§lRetour", false);
 
         inventory.setItem(4, head);
         inventory.setItem(10, insultes);

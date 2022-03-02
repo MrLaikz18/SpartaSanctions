@@ -1,0 +1,9 @@
+name: SpartaSanctions
+version: 1.0
+author: MrLaikz
+main: fr.mrlaikz.spartasanctions.SpartaSanctions
+api-version: 1.18
+commands:
+  sanction:
+    description: "Commande de Sanction"
+    permission: "spartacube.mod"

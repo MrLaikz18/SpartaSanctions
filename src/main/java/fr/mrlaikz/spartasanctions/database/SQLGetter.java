@@ -2,10 +2,9 @@ package fr.mrlaikz.spartasanctions.database;
 
 import fr.mrlaikz.spartasanctions.SpartaSanctions;
 import fr.mrlaikz.spartasanctions.enums.SanctionType;
-import fr.mrlaikz.spartasanctions.objects.Context;
+import fr.mrlaikz.spartasanctions.enums.Context;
 import fr.mrlaikz.spartasanctions.objects.Sanction;
 import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
 import java.sql.Connection;
@@ -22,14 +21,13 @@ public class SQLGetter {
 
     private SpartaSanctions plugin;
     private Connection db;
+    private String table;
 
     public SQLGetter(SpartaSanctions plugin) {
         this.plugin = plugin;
         this.db = plugin.getDatabase();
+        table = plugin.strConfig("database.table");
     }
-
-    private String table = plugin.strConfig("database.table");
-
 
     //BASIC QUERYS
     public List<Sanction> getSanctions(Player p) {
@@ -126,13 +124,14 @@ public class SQLGetter {
 
     public void addSanction(Sanction s) {
         try {
-            PreparedStatement ps = db.prepareStatement("INSERT INTO " + table + " (sanctioned, type, time, reason, sanctioner, date) VALUES(?, ?, ?, ?, ?, ?)");
-            ps.setString(1, s.getSanctioned().getName());
+            PreparedStatement ps = db.prepareStatement("INSERT INTO " + table + " (sanctioned, type, time, reason, sanctioner, date, context) VALUES(?, ?, ?, ?, ?, ?, ?)");
+            ps.setString(1, s.getSanctioned().getUniqueId().toString());
             ps.setString(2, s.getType().toString());
             ps.setString(3, s.getTime());
             ps.setString(4, s.getReason());
             ps.setString(5, s.getSanctioner().getName());
             ps.setString(6, s.getDate());
+            ps.setString(7, s.getContext().name());
             ps.executeUpdate();
         } catch(SQLException e) {
             e.printStackTrace();

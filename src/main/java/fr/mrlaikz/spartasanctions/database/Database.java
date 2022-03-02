@@ -10,15 +10,20 @@ public class Database {
 
     private SpartaSanctions plugin;
 
+    private String host;
+    private String port;
+    private String database;
+    private String username;
+    private String password;
+
     public Database(SpartaSanctions plugin) {
         this.plugin = plugin;
+        host = plugin.strConfig("database.host");
+        port = plugin.strConfig("database.port");
+        database = plugin.strConfig("database.database");
+        username = plugin.strConfig("database.username");
+        password = plugin.strConfig("database.password");
     }
-
-    private String host = plugin.strConfig("database.host");
-    private String port = plugin.strConfig("database.port");
-    private String database = plugin.strConfig("database.database");
-    private String username = plugin.strConfig("database.username");
-    private String password = plugin.strConfig("database.password");
 
     private Connection connection;
 

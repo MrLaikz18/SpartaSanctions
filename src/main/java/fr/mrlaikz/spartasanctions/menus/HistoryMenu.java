@@ -51,6 +51,7 @@ public class HistoryMenu extends Menu {
         inventory.setItem(4, head);
 
         ItemStack retour = PlayerMenu.getItemStack(Material.BARRIER, "§c§lRetour", false);
+        inventory.setItem(0, retour);
 
         displaySanctions(SanctionType.TEMPMUTE, 1);
         displaySanctions(SanctionType.TEMPBAN, 3);
@@ -65,7 +66,7 @@ public class HistoryMenu extends Menu {
             for(Sanction s : sanction) {
                 ItemStack it = PlayerMenu.getItemStack(type.getMaterial(), "§c§l"+s.getDate(), false);
                 List<String> lore = new ArrayList<String>();
-                lore.add("§cAuteur: " + s.getSanctioner());
+                lore.add("§cAuteur: " + s.getSanctioner().getName());
                 lore.add("§cRaison: " + s.getReason());
                 if(!s.getType().equals(SanctionType.WARN)) {
                     lore.add("§cDurée: " + s.getTime());

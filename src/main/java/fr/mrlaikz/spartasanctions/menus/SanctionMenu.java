@@ -3,9 +3,11 @@ package fr.mrlaikz.spartasanctions.menus;
 import fr.iban.bukkitcore.menu.Menu;
 import fr.mrlaikz.spartasanctions.SpartaSanctions;
 import fr.mrlaikz.spartasanctions.menus.PlayerMenu;
+import fr.mrlaikz.spartasanctions.menus.sanction.SanctionAutre;
 import fr.mrlaikz.spartasanctions.menus.sanction.SanctionChatMenu;
 import fr.mrlaikz.spartasanctions.menus.sanction.SanctionCheatMenu;
 import fr.mrlaikz.spartasanctions.menus.sanction.SanctionJeuMenu;
+import fr.mrlaikz.spartasanctions.objects.Sanction;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
@@ -62,7 +64,8 @@ public class SanctionMenu extends Menu {
             }
 
             if(it.getItemMeta().getDisplayName().equalsIgnoreCase("§b§lAutres")) {
-
+                SanctionAutre menu = new SanctionAutre(player, target);
+                menu.open();
             }
 
             if(it.getItemMeta().getDisplayName().equalsIgnoreCase("§c§lRetour")) {

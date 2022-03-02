@@ -2,6 +2,7 @@ package fr.mrlaikz.spartasanctions.menus;
 
 import fr.iban.bukkitcore.menu.Menu;
 import fr.mrlaikz.spartasanctions.SpartaSanctions;
+import fr.mrlaikz.spartasanctions.enums.SanctionType;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
@@ -47,7 +48,7 @@ public class PlayerMenu extends Menu {
             }
 
             if (it.getItemMeta().getDisplayName().equalsIgnoreCase("§c§lSanction")) {
-                SanctionMenu menu = new SanctionMenu(player, target);
+                SanctionMenu menu = new SanctionMenu(player, target, plugin);
                 menu.open();
             }
 
@@ -79,9 +80,13 @@ public class PlayerMenu extends Menu {
         headM.setOwningPlayer(target);
         headM.setDisplayName("§6" + target.getName());
         List<String> lore = new ArrayList<String>();
-        lore.add("§eWarns: "); //NOMBRE DE WARNS
-        lore.add("§eMute: "); //BOOLEAN MUTE
-        lore.add("§eBan: "); //DUREE BAN / BOOLEAN BAN
+
+
+        SpartaSanctions.getInstance().getSQL().getSanctionsAsync(target, SanctionType.WARN).thenAccept(warns -> {
+            String w = String.valueOf(warns.size());
+            lore.add("§eWarns: §c" + w);
+        });
+
         headM.setLore(lore);
         head.setItemMeta(headM);
         return head;

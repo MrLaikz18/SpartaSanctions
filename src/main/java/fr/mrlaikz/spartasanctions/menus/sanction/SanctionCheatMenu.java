@@ -5,13 +5,12 @@ import fr.mrlaikz.spartasanctions.SpartaSanctions;
 import fr.mrlaikz.spartasanctions.enums.SanctionType;
 import fr.mrlaikz.spartasanctions.menus.PlayerMenu;
 import fr.mrlaikz.spartasanctions.menus.SanctionMenu;
-import fr.mrlaikz.spartasanctions.objects.Context;
+import fr.mrlaikz.spartasanctions.enums.Context;
 import fr.mrlaikz.spartasanctions.objects.Sanction;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -106,7 +105,7 @@ public class SanctionCheatMenu extends Menu {
         ItemStack baritone = PlayerMenu.getItemStack(Material.CHEST, "§cBaritone", false);
         ItemStack kb = PlayerMenu.getItemStack(Material.CHEST, "§cAnti Knockback", false);
         ItemStack jump = PlayerMenu.getItemStack(Material.CHEST, "§cJump", false);
-        ItemStack retour = PlayerMenu.getItemStack(Material.CHEST, "§c§lRetour", false);
+        ItemStack retour = PlayerMenu.getItemStack(Material.BARRIER, "§c§lRetour", false);
 
         inventory.setItem(4, head);
         inventory.setItem(10, xray);
