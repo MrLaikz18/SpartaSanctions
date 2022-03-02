@@ -14,16 +14,10 @@ public class SanctionManager {
     }
 
     public void apply(Sanction s) {
-        plugin.getSQL().addSanctionAsync(s);
         plugin.getSQL().getSanctionsAsync(s.getSanctioned(), s.getContext()).thenAccept(sanctions -> {
             switch(s.getContext()) {
                 case CHAT:
-                    if(sanctions.size() >= 3) {
-                        s.doubleTime();
-                    }
-
-                    if(sanctions.size()%5==0) {
-                        s.doubleTime();
+                    if(sanctions.size()%5==0 && sanctions.size()!=0) {
                         Sanction warn = new Sanction(s.getSanctioner(), s.getSanctioned(), SanctionType.WARN, "", s.getReason(), s.getDate(), s.getContext());
                         apply(warn);
                     }
@@ -35,20 +29,23 @@ public class SanctionManager {
                     }
                     break;
                 case CHEAT:
-                    if(sanctions.size() >= 4) {
+                    if(sanctions.size() == 4) {
                         Sanction bandef = new Sanction(s.getSanctioner(), s.getSanctioned(), SanctionType.TEMPBAN, "100y", s.getReason(), s.getDate(), s.getContext());
                         apply(bandef);
                     }
                     break;
             }
         });
-
+        plugin.getSQL().addSanctionAsync(s);
         plugin.getLogger().info("Sanction ajoutée");
 
         Bukkit.getPlayer(s.getSanctioner()).performCommand(s.getType().getCommand()
                 .replace("%time%", s.getTime())
                 .replace("%player%", s.getSanctioned().getName())
                 .replace("%reason%", s.getReason()));
+
+        Bukkit.getPlayer(s.getSanctioner()).sendMessage("§aSanction ajoutée à §6" + s.getSanctioned().getName() + "§a: §a§l"+s.getType()+ ": §a" + s.getTime() + " " + s.getReason());
+
     }
 
 }
