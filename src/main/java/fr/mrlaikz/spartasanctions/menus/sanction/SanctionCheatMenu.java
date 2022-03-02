@@ -84,9 +84,9 @@ public class SanctionCheatMenu extends Menu {
                 time = "14d";
             }
 
-            Sanction warn = new Sanction(player, target, SanctionType.WARN, "", reason, date, Context.CHEAT);
+            Sanction warn = new Sanction(player.getName(), target, SanctionType.WARN, "", reason, date, Context.CHEAT);
 
-            Sanction s = new Sanction(player, target, type, time, reason, date, Context.CHEAT);
+            Sanction s = new Sanction(player.getName(), target, type, time, reason, date, Context.CHEAT);
             SpartaSanctions.getInstance().getSanctionManager().apply(s);
             SpartaSanctions.getInstance().getSanctionManager().apply(warn);
 

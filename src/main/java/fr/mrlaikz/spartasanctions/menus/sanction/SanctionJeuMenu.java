@@ -66,7 +66,7 @@ public class SanctionJeuMenu extends Menu {
 
             if (it.getItemMeta().getDisplayName().equalsIgnoreCase("§cGrief Extrême")) {
                 time = "14d";
-                Sanction warn = new Sanction(player, target, SanctionType.WARN, "", "Grief", date, Context.GAME);
+                Sanction warn = new Sanction(player.getName(), target, SanctionType.WARN, "", "Grief", date, Context.GAME);
                 SpartaSanctions.getInstance().getSanctionManager().apply(warn);
             }
 
@@ -87,7 +87,7 @@ public class SanctionJeuMenu extends Menu {
                 time = "14d";
             }
 
-            Sanction s = new Sanction(player, target, type, time, reason, date, Context.GAME);
+            Sanction s = new Sanction(player.getName(), target, type, time, reason, date, Context.GAME);
             SpartaSanctions.getInstance().getSanctionManager().apply(s);
 
         }

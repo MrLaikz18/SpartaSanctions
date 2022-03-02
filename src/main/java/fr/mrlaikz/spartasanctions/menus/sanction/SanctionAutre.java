@@ -93,7 +93,11 @@ public class SanctionAutre extends Menu {
                 type = SanctionType.WARN;
             }
 
-            Sanction s = new Sanction(player, target, type, time, reason, date, c);
+            if(it.getItemMeta().getDisplayName().equalsIgnoreCase("§cKick")) {
+                type = SanctionType.KICK;
+            }
+
+            Sanction s = new Sanction(player.getName(), target, type, time, reason, date, c);
             SpartaSanctions.getInstance().getSanctionManager().apply(s);
 
         }
@@ -112,6 +116,7 @@ public class SanctionAutre extends Menu {
         ItemStack tempban2 = PlayerMenu.getItemStack(Material.CHEST, "§cTempban 15d", false);
         ItemStack tempban3 = PlayerMenu.getItemStack(Material.CHEST, "§cTempban 30d", false);
         ItemStack warn = PlayerMenu.getItemStack(Material.CHEST, "§cWarn", false);
+        ItemStack kick = PlayerMenu.getItemStack(Material.CHEST, "§cKick", false);
         ItemStack retour = PlayerMenu.getItemStack(Material.BARRIER, "§c§lRetour", false);
 
         inventory.setItem(4, head);
@@ -122,6 +127,7 @@ public class SanctionAutre extends Menu {
         inventory.setItem(14, tempban2);
         inventory.setItem(15, tempban3);
         inventory.setItem(16, warn);
+        inventory.setItem(22, kick);
         inventory.setItem(18, retour);
 
     }

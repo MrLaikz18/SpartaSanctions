@@ -64,11 +64,12 @@ public class HistoryMenu extends Menu {
         plugin.getSQL().getSanctionsAsync(target, type).thenAccept(sanction -> {
             int i = 0;
             for(Sanction s : sanction) {
-                ItemStack it = PlayerMenu.getItemStack(type.getMaterial(), "§c§l"+s.getDate(), false);
+                ItemStack it = PlayerMenu.getItemStack(type.getMaterial(), "§c§l"+type.toString(), false);
                 List<String> lore = new ArrayList<String>();
-                lore.add("§cAuteur: " + s.getSanctioner().getName());
+                lore.add("§cDate: " + s.getDate());
+                lore.add("§cAuteur: " + s.getSanctioner());
                 lore.add("§cRaison: " + s.getReason());
-                if(!s.getType().equals(SanctionType.WARN)) {
+                if(type.equals(SanctionType.TEMPMUTE) || type.equals(SanctionType.TEMPBAN)) {
                     lore.add("§cDurée: " + s.getTime());
                 }
                 it.setLore(lore);

@@ -62,7 +62,7 @@ public class SanctionChatMenu extends Menu {
 
             if(it.getItemMeta().getDisplayName().equalsIgnoreCase("§cInsultes Graves")) {
                 time = "1h";
-                Sanction warn = new Sanction(player, target, SanctionType.WARN, "", reason, date, Context.CHAT);
+                Sanction warn = new Sanction(player.getName(), target, SanctionType.WARN, "", reason, date, Context.CHAT);
                 SpartaSanctions.getInstance().getSanctionManager().apply(warn);
             }
 
@@ -86,7 +86,7 @@ public class SanctionChatMenu extends Menu {
                 time = "1h";
             }
 
-            Sanction s = new Sanction(player, target, type, time, reason, date, Context.CHAT);
+            Sanction s = new Sanction(player.getName(), target, type, time, reason, date, Context.CHAT);
             SpartaSanctions.getInstance().getSanctionManager().apply(s);
 
         }

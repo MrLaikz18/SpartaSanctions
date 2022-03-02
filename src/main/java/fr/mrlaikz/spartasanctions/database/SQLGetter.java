@@ -5,6 +5,7 @@ import fr.mrlaikz.spartasanctions.enums.SanctionType;
 import fr.mrlaikz.spartasanctions.enums.Context;
 import fr.mrlaikz.spartasanctions.objects.Sanction;
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
 import java.sql.Connection;
@@ -41,7 +42,7 @@ public class SQLGetter {
                 SanctionType type = SanctionType.valueOf(rs.getString("type"));
                 String time = rs.getString("time");
                 String reason = rs.getString("reason");
-                Player sanctioner = Bukkit.getPlayer(rs.getString("sanctioner"));
+                String sanctioner = rs.getString("sanctioner");
                 String date = rs.getString("date");
                 Context c = Context.valueOf(rs.getString("context"));
                 Sanction s = new Sanction(sanctioner, sanctioned, type, time, reason, date, c);
@@ -64,7 +65,7 @@ public class SQLGetter {
                 Player sanctioned = p;
                 String time = rs.getString("time");
                 String reason = rs.getString("reason");
-                Player sanctioner = Bukkit.getPlayer(rs.getString("sanctioner"));
+                String sanctioner = rs.getString("sanctioner");
                 String date = rs.getString("date");
                 Context c = Context.valueOf(rs.getString("context"));
                 Sanction s = new Sanction(sanctioner, sanctioned, type, time, reason, date, c);
@@ -87,7 +88,7 @@ public class SQLGetter {
             while(rs.next()) {
                 Player sanctioned = p;
                 String time = rs.getString("time");
-                Player sanctioner = Bukkit.getPlayer(rs.getString("sanctioner"));
+                String sanctioner = rs.getString("sanctioner");
                 String date = rs.getString("date");
                 Context c = Context.valueOf(rs.getString("context"));
                 Sanction s = new Sanction(sanctioner, sanctioned, type, time, reason, date, c);
@@ -110,7 +111,7 @@ public class SQLGetter {
                 Player sanctioned = p;
                 String time = rs.getString("time");
                 SanctionType type = SanctionType.valueOf(rs.getString("type"));
-                Player sanctioner = Bukkit.getPlayer(rs.getString("sanctioner"));
+                String sanctioner = rs.getString("sanctioner");
                 String reason = rs.getString("reason");
                 String date = rs.getString("date");
                 Sanction s = new Sanction(sanctioner, sanctioned, type, time, reason, date, c);
@@ -129,7 +130,7 @@ public class SQLGetter {
             ps.setString(2, s.getType().toString());
             ps.setString(3, s.getTime());
             ps.setString(4, s.getReason());
-            ps.setString(5, s.getSanctioner().getName());
+            ps.setString(5, s.getSanctioner());
             ps.setString(6, s.getDate());
             ps.setString(7, s.getContext().name());
             ps.executeUpdate();

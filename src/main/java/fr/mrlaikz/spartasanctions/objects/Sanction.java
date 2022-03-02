@@ -2,11 +2,12 @@ package fr.mrlaikz.spartasanctions.objects;
 
 import fr.mrlaikz.spartasanctions.enums.Context;
 import fr.mrlaikz.spartasanctions.enums.SanctionType;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
 public class Sanction {
 
-    private Player sanctioner;
+    private String sanctioner;
     private Player sanctioned;
     private SanctionType type;
     private String time;
@@ -14,7 +15,7 @@ public class Sanction {
     private String date;
     private Context context;
 
-    public Sanction(Player sanctioner, Player sanctioned, SanctionType type, String time, String reason, String date, Context context) {
+    public Sanction(String sanctioner, Player sanctioned, SanctionType type, String time, String reason, String date, Context context) {
         this.sanctioner = sanctioner;
         this.sanctioned = sanctioned;
         this.type = type;
@@ -41,7 +42,7 @@ public class Sanction {
         return reason;
     }
 
-    public Player getSanctioner() {
+    public String getSanctioner() {
         return sanctioner;
     }
 
