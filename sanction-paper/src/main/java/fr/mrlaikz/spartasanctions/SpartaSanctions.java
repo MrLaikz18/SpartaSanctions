@@ -3,7 +3,6 @@ package fr.mrlaikz.spartasanctions;
 import fr.mrlaikz.spartasanctions.commands.SanctionCMD;
 import fr.mrlaikz.spartasanctions.database.Database;
 import fr.mrlaikz.spartasanctions.database.SQLGetter;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -38,6 +37,7 @@ public class SpartaSanctions extends JavaPlugin {
         getCommand("sanction").setExecutor(new SanctionCMD(this));
 
         //MISC
+        this.getServer().getMessenger().registerOutgoingPluginChannel(this, "SpartaChannel");
         getLogger().info("Plugin Actif");
     }
 

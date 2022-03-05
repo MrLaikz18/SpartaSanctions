@@ -1,5 +1,7 @@
 package fr.mrlaikz.spartasanctions;
 
+import com.google.common.io.ByteArrayDataOutput;
+import com.google.common.io.ByteStreams;
 import fr.mrlaikz.spartasanctions.enums.SanctionType;
 import fr.mrlaikz.spartasanctions.objects.Sanction;
 import org.bukkit.Bukkit;
@@ -17,9 +19,10 @@ public class SanctionManager {
         plugin.getSQL().getSanctionsAsync(s.getSanctioned(), s.getContext()).thenAccept(sanctions -> {
             switch(s.getContext()) {
                 case CHAT:
-                    if(sanctions.size()%5==0 && sanctions.size()!=0) {
+                    if(sanctions.size()%5==0 && sanctions.size()!=0 && s.getType().equals(SanctionType.TEMPMUTE)) {
                         Sanction warn = new Sanction(s.getSanctioner(), s.getSanctioned(), SanctionType.WARN, "", s.getReason(), s.getDate(), s.getContext());
                         apply(warn);
+                        s.setTime("30m");
                     }
                     break;
                 case GAME:
@@ -35,17 +38,29 @@ public class SanctionManager {
                     }
                     break;
             }
+
+            plugin.getSQL().addSanctionAsync(s);
+            plugin.getLogger().info("Sanction ajoutée");
+            String cmd = s.getType().getCommand()
+                    .replace("%time%", s.getTime())
+                    .replace("%player%", s.getSanctioned().getName())
+                    .replace("%reason%", s.getReason());
+
+            sendPluginMessage(Bukkit.getPlayer(s.getSanctioner()), cmd);
+            Bukkit.getPlayer(s.getSanctioner()).sendMessage("§aSanction ajoutée à §6" + s.getSanctioned().getName() + "§a: §a§l"+s.getType()+ ": §a" + s.getTime() + " " + s.getReason());
+
+
         });
-        plugin.getSQL().addSanctionAsync(s);
-        plugin.getLogger().info("Sanction ajoutée");
-
-        Bukkit.getPlayer(s.getSanctioner()).performCommand(s.getType().getCommand()
-                .replace("%time%", s.getTime())
-                .replace("%player%", s.getSanctioned().getName())
-                .replace("%reason%", s.getReason()));
-
-        Bukkit.getPlayer(s.getSanctioner()).sendMessage("§aSanction ajoutée à §6" + s.getSanctioned().getName() + "§a: §a§l"+s.getType()+ ": §a" + s.getTime() + " " + s.getReason());
 
     }
+
+    public void sendPluginMessage(Player performer, String cmd) {
+        final ByteArrayDataOutput out = ByteStreams.newDataOutput();
+        out.writeUTF("Command");
+        out.writeUTF(performer.getUniqueId().toString());
+        out.writeUTF(cmd);
+        performer.sendPluginMessage(plugin, "SpartaChannel", out.toByteArray());
+    }
+
 
 }

@@ -1,11 +1,9 @@
 package fr.mrlaikz.spartasanctions.commands;
 
-import fr.iban.bukkitcore.menu.Menu;
 import fr.mrlaikz.spartasanctions.SpartaSanctions;
 import fr.mrlaikz.spartasanctions.menus.HistoryMenu;
 import fr.mrlaikz.spartasanctions.menus.PlayerMenu;
 import fr.mrlaikz.spartasanctions.menus.SanctionMenu;
-import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

@@ -2,7 +2,6 @@ package fr.mrlaikz.spartasanctions.objects;
 
 import fr.mrlaikz.spartasanctions.enums.Context;
 import fr.mrlaikz.spartasanctions.enums.SanctionType;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
 public class Sanction {
@@ -61,12 +60,6 @@ public class Sanction {
 
     public void setTime(String t) {
         this.time = t;
-    }
-
-    public void doubleTime() {
-        int t = Integer.parseInt(time);
-        String n = String.valueOf((t*2) + time.replace(String.valueOf(t), ""));
-        this.time = n;
     }
 
 }

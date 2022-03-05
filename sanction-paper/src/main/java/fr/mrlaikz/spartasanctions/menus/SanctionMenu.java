@@ -2,18 +2,14 @@ package fr.mrlaikz.spartasanctions.menus;
 
 import fr.iban.bukkitcore.menu.Menu;
 import fr.mrlaikz.spartasanctions.SpartaSanctions;
-import fr.mrlaikz.spartasanctions.menus.PlayerMenu;
 import fr.mrlaikz.spartasanctions.menus.sanction.SanctionAutre;
 import fr.mrlaikz.spartasanctions.menus.sanction.SanctionChatMenu;
 import fr.mrlaikz.spartasanctions.menus.sanction.SanctionCheatMenu;
 import fr.mrlaikz.spartasanctions.menus.sanction.SanctionJeuMenu;
-import fr.mrlaikz.spartasanctions.objects.Sanction;
 import org.bukkit.Material;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
 public class SanctionMenu extends Menu {
 
