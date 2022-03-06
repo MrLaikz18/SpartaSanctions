@@ -106,7 +106,7 @@ public class SanctionJeuMenu extends Menu {
         ItemStack tpkill = PlayerMenu.getItemStack(Material.CHEST, "§cTP Kill", false);
         ItemStack afk = PlayerMenu.getItemStack(Material.CHEST, "§cAnti-AFK", false);
         ItemStack retour = PlayerMenu.getItemStack(Material.BARRIER, "§c§lRetour", false);
-
+        addMenuBorder();
         inventory.setItem(4, head);
         inventory.setItem(10, grief);
         inventory.setItem(11, griefG);

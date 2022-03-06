@@ -37,7 +37,7 @@ public class SpartaSanctions extends JavaPlugin {
         getCommand("sanction").setExecutor(new SanctionCMD(this));
 
         //MISC
-        this.getServer().getMessenger().registerOutgoingPluginChannel(this, "SpartaChannel");
+        this.getServer().getMessenger().registerOutgoingPluginChannel(this, "spartachannel:command");
         getLogger().info("Plugin Actif");
     }
 

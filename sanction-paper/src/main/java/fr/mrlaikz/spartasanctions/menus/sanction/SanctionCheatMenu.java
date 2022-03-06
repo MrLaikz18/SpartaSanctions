@@ -106,7 +106,7 @@ public class SanctionCheatMenu extends Menu {
         ItemStack kb = PlayerMenu.getItemStack(Material.CHEST, "§cAnti Knockback", false);
         ItemStack jump = PlayerMenu.getItemStack(Material.CHEST, "§cJump", false);
         ItemStack retour = PlayerMenu.getItemStack(Material.BARRIER, "§c§lRetour", false);
-
+        addMenuBorder();
         inventory.setItem(4, head);
         inventory.setItem(10, xray);
         inventory.setItem(11, xrayA);

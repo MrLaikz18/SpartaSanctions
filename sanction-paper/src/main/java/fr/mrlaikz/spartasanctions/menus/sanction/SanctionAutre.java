@@ -118,7 +118,7 @@ public class SanctionAutre extends Menu {
         ItemStack warn = PlayerMenu.getItemStack(Material.CHEST, "§cWarn", false);
         ItemStack kick = PlayerMenu.getItemStack(Material.CHEST, "§cKick", false);
         ItemStack retour = PlayerMenu.getItemStack(Material.BARRIER, "§c§lRetour", false);
-
+        addMenuBorder();
         inventory.setItem(4, head);
         inventory.setItem(10, tempmute1);
         inventory.setItem(11, tempmute2);

@@ -90,6 +90,7 @@ public class SanctionMenu extends Menu {
         inventory.setItem(24, epee);
         inventory.setItem(40, bow);
         inventory.setItem(45, barrier);
+        addMenuBorder();
 
     }
 }

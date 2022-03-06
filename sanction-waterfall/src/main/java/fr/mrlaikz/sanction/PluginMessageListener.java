@@ -14,18 +14,19 @@ public class PluginMessageListener implements Listener {
 
     @EventHandler
     public void onPluginMessage(PluginMessageEvent e) {
-        if(e.getTag().equals("SpartaChannel")) {
+        if(e.getTag().equals("spartachannel:command")) {
             final ByteArrayDataInput in = ByteStreams.newDataInput(e.getData());
             final String sub = in.readUTF();
 
-            if(sub.equals("Command")) {
+            if(sub.equals("command")) {
                 //LECTURE MESSAGE
                 final String uuidStr = in.readUTF();
                 final UUID uuid = UUID.fromString(uuidStr);
                 final String cmd = in.readUTF();
 
                 ProxiedPlayer p = SanctionWaterfall.INSTANCE.getProxy().getPlayer(uuid);
-                p.chat("/" + cmd);
+                SanctionWaterfall.INSTANCE.getProxy().getPluginManager().dispatchCommand(p, cmd);
+
             }
 
         }

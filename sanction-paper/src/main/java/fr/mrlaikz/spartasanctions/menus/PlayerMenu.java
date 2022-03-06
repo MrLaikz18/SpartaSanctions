@@ -72,6 +72,8 @@ public class PlayerMenu extends Menu {
         inventory.setItem(29, axe);
         inventory.setItem(33, book);
 
+        addMenuBorder();
+
     }
 
     public static ItemStack getTargetHead(Player target) {

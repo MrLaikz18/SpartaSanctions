@@ -56,10 +56,10 @@ public class SanctionManager {
 
     public void sendPluginMessage(Player performer, String cmd) {
         final ByteArrayDataOutput out = ByteStreams.newDataOutput();
-        out.writeUTF("Command");
+        out.writeUTF("command");
         out.writeUTF(performer.getUniqueId().toString());
         out.writeUTF(cmd);
-        performer.sendPluginMessage(plugin, "SpartaChannel", out.toByteArray());
+        performer.sendPluginMessage(plugin, "spartachannel:command", out.toByteArray());
     }
 
 

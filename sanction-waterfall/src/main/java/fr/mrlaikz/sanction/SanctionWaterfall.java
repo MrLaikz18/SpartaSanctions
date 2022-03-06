@@ -16,7 +16,7 @@ public class SanctionWaterfall extends Plugin {
     @Override
     public void onEnable() {
         INSTANCE = this;
-        this.getProxy().registerChannel("SpartaChannel");
+        this.getProxy().registerChannel("spartachannel:command");
         this.getProxy().getPluginManager().registerListener(this, new PluginMessageListener());
 
     }

@@ -106,7 +106,7 @@ public class SanctionChatMenu extends Menu {
         ItemStack maj = PlayerMenu.getItemStack(Material.CHEST, "§cMajuscules", false);
         ItemStack provoc = PlayerMenu.getItemStack(Material.CHEST, "§cProvocation", false);
         ItemStack retour = PlayerMenu.getItemStack(Material.BARRIER, "§c§lRetour", false);
-
+        addMenuBorder();
         inventory.setItem(4, head);
         inventory.setItem(10, insultes);
         inventory.setItem(11, insultesG);
