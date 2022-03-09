@@ -8,6 +8,7 @@ import fr.mrlaikz.spartasanctions.menus.PlayerMenu;
 import fr.mrlaikz.spartasanctions.menus.SanctionMenu;
 import fr.mrlaikz.spartasanctions.objects.Sanction;
 import org.bukkit.Material;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
@@ -17,9 +18,9 @@ import java.util.Date;
 
 public class SanctionAutre extends Menu {
 
-    private Player target;
+    private OfflinePlayer target;
 
-    public SanctionAutre(Player player, Player target) {
+    public SanctionAutre(Player player, OfflinePlayer target) {
         super(player);
         this.target = target;
     }

@@ -8,6 +8,7 @@ import fr.mrlaikz.spartasanctions.menus.SanctionMenu;
 import fr.mrlaikz.spartasanctions.enums.Context;
 import fr.mrlaikz.spartasanctions.objects.Sanction;
 import org.bukkit.Material;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
@@ -17,9 +18,9 @@ import java.util.Date;
 
 public class SanctionCheatMenu extends Menu {
 
-    private Player target;
+    private OfflinePlayer target;
 
-    public SanctionCheatMenu(Player player, Player target) {
+    public SanctionCheatMenu(Player player, OfflinePlayer target) {
         super(player);
         this.target = target;
     }
@@ -80,7 +81,7 @@ public class SanctionCheatMenu extends Menu {
                 time = "14d";
             }
 
-            if(it.getItemMeta().getDisplayName().equalsIgnoreCase("§cJump")) {
+            if(it.getItemMeta().getDisplayName().equalsIgnoreCase("§cAuto Click")) {
                 time = "14d";
             }
 
@@ -104,7 +105,7 @@ public class SanctionCheatMenu extends Menu {
         ItemStack speed = PlayerMenu.getItemStack(Material.CHEST, "§cSpeed", false);
         ItemStack baritone = PlayerMenu.getItemStack(Material.CHEST, "§cBaritone", false);
         ItemStack kb = PlayerMenu.getItemStack(Material.CHEST, "§cAnti Knockback", false);
-        ItemStack jump = PlayerMenu.getItemStack(Material.CHEST, "§cJump", false);
+        ItemStack ac = PlayerMenu.getItemStack(Material.CHEST, "§cAuto Click", false);
         ItemStack retour = PlayerMenu.getItemStack(Material.BARRIER, "§c§lRetour", false);
         addMenuBorder();
         inventory.setItem(4, head);
@@ -114,7 +115,7 @@ public class SanctionCheatMenu extends Menu {
         inventory.setItem(13, speed);
         inventory.setItem(14, baritone);
         inventory.setItem(15, kb);
-        inventory.setItem(16, jump);
+        inventory.setItem(16, ac);
         inventory.setItem(18, retour);
     }
 }

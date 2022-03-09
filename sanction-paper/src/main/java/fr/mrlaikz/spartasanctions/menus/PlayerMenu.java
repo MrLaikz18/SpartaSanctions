@@ -4,6 +4,7 @@ import fr.iban.bukkitcore.menu.Menu;
 import fr.mrlaikz.spartasanctions.SpartaSanctions;
 import fr.mrlaikz.spartasanctions.enums.SanctionType;
 import org.bukkit.Material;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -17,10 +18,10 @@ import java.util.List;
 
 public class PlayerMenu extends Menu {
 
-    private Player target;
+    private OfflinePlayer target;
     private SpartaSanctions plugin;
 
-    public PlayerMenu(Player player, Player target, SpartaSanctions plugin) {
+    public PlayerMenu(Player player, OfflinePlayer target, SpartaSanctions plugin) {
         super(player);
         this.target = target;
         this.plugin = plugin;
@@ -42,10 +43,6 @@ public class PlayerMenu extends Menu {
         Player p = (Player) e.getWhoClicked();
         ItemStack it = e.getCurrentItem();
         if(it != null && it.hasItemMeta() && it.getItemMeta().hasDisplayName()) {
-
-            if(it.getType().equals(Material.PLAYER_HEAD)) {
-                p.teleport(target);
-            }
 
             if (it.getItemMeta().getDisplayName().equalsIgnoreCase("§c§lSanction")) {
                 SanctionMenu menu = new SanctionMenu(player, target, plugin);
@@ -76,7 +73,7 @@ public class PlayerMenu extends Menu {
 
     }
 
-    public static ItemStack getTargetHead(Player target) {
+    public static ItemStack getTargetHead(OfflinePlayer target) {
         ItemStack head = new ItemStack(Material.PLAYER_HEAD);
         SkullMeta headM = (SkullMeta) head.getItemMeta();
         headM.setOwningPlayer(target);

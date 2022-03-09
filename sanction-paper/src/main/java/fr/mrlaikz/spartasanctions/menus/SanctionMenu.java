@@ -7,16 +7,17 @@ import fr.mrlaikz.spartasanctions.menus.sanction.SanctionChatMenu;
 import fr.mrlaikz.spartasanctions.menus.sanction.SanctionCheatMenu;
 import fr.mrlaikz.spartasanctions.menus.sanction.SanctionJeuMenu;
 import org.bukkit.Material;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
 public class SanctionMenu extends Menu {
 
-    private Player target;
+    private OfflinePlayer target;
     private SpartaSanctions plugin;
 
-    public SanctionMenu(Player player, Player target, SpartaSanctions plugin) {
+    public SanctionMenu(Player player, OfflinePlayer target, SpartaSanctions plugin) {
         super(player);
         this.target = target;
         this.plugin = plugin;
@@ -39,10 +40,6 @@ public class SanctionMenu extends Menu {
         ItemStack it = e.getCurrentItem();
 
         if(it != null && it.hasItemMeta() && it.getItemMeta().hasDisplayName()) {
-
-            if(it.getType().equals(Material.PLAYER_HEAD)) {
-                p.teleport(target);
-            }
 
             if(it.getItemMeta().getDisplayName().equalsIgnoreCase("§2§lSanction Chat")) {
                 SanctionChatMenu menu = new SanctionChatMenu(player, target);

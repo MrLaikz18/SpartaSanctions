@@ -5,11 +5,14 @@ import fr.mrlaikz.spartasanctions.menus.HistoryMenu;
 import fr.mrlaikz.spartasanctions.menus.PlayerMenu;
 import fr.mrlaikz.spartasanctions.menus.SanctionMenu;
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.UUID;
 
 public class SanctionCMD implements CommandExecutor {
 
@@ -34,9 +37,9 @@ public class SanctionCMD implements CommandExecutor {
                     }
 
                     if (args.length == 1) {
-                        Player target = Bukkit.getPlayer(args[0]);
+                        OfflinePlayer target = Bukkit.getOfflinePlayer(args[0]);
                         if (target == null) {
-                            p.sendMessage("§cCe joueur n'est pas en ligne !");
+                            p.sendMessage("§cCe joueur n'existe pas !");
                             return false;
                         }
 
@@ -46,11 +49,12 @@ public class SanctionCMD implements CommandExecutor {
                     }
 
                     if (args.length == 2) {
-                        Player target = Bukkit.getPlayer(args[0]);
+                        OfflinePlayer target = Bukkit.getOfflinePlayer(args[0]);
                         if (target == null) {
-                            p.sendMessage("§cCe joueur n'est pas en ligne !");
+                            p.sendMessage("§cCe joueur n'existe pas !");
                             return false;
                         }
+
                         if (args[1].equalsIgnoreCase("history")) {
                             HistoryMenu menu = new HistoryMenu(p, target, plugin);
                             menu.open();

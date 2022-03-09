@@ -5,6 +5,7 @@ import fr.mrlaikz.spartasanctions.SpartaSanctions;
 import fr.mrlaikz.spartasanctions.enums.SanctionType;
 import fr.mrlaikz.spartasanctions.objects.Sanction;
 import org.bukkit.Material;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
@@ -14,10 +15,10 @@ import java.util.List;
 
 public class HistoryMenu extends Menu {
 
-    private Player target;
+    private OfflinePlayer target;
     private SpartaSanctions plugin;
 
-    public HistoryMenu(Player player, Player target, SpartaSanctions plugin) {
+    public HistoryMenu(Player player, OfflinePlayer target, SpartaSanctions plugin) {
         super(player);
         this.target = target;
         this.plugin = plugin;
